@@ -1,1 +1,1 @@
-Bienvenido a la intranet
+Bienvenido a la intranet de Practicas
