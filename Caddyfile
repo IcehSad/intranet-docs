@@ -1,0 +1,4 @@
+:80 {
+    reverse_proxy /oauth2/* oauth2-proxy:4180
+    reverse_proxy * oauth2-proxy:4180
+}

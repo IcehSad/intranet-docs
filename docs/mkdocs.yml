@@ -1,0 +1,8 @@
+site_name: Intranet
+docs_dir: content
+nav:
+  - Inicio: index.md
+  - PDFs: pdf_index.md
+theme:
+  name: material
+  custom_dir: overrides

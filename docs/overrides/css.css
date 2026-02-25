@@ -1,0 +1,31 @@
+<style>
+  /* Botón cerrar sesión arriba a la derecha */
+  .logout-link {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 6px 10px;
+  }
+
+  /* Centrar la barra de búsqueda */
+  .md-header__inner {
+    display: flex;
+    justify-content: center;   /* centra todo el contenido */
+    position: relative;
+  }
+
+  /* Evitar que el título empuje el buscador */
+  .md-header__title {
+    margin-right: auto;
+  }
+
+  /* Evitar que el botón cerrar sesión empuje el buscador */
+  .logout-link {
+    position: absolute;
+    right: 10px;
+  }
+</style>

@@ -1,0 +1,36 @@
+services:
+  mkdocs:
+    image: squidfunk/mkdocs-material:9.5.17
+    container_name: mkdocs
+    working_dir: /docs
+    command: ["serve", "-a", "0.0.0.0:8000"]
+    volumes:
+      - ./docs:/docs
+
+  oauth2-proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy
+    container_name: oauth2-proxy
+    ports:
+      - "4180:4180"
+    environment:
+      - OAUTH2_PROXY_PROVIDER=google
+      - OAUTH2_PROXY_COOKIE_SECRET=1913b1f8cd163e3c86aa944a1a029ca4
+      - OAUTH2_PROXY_EMAIL_DOMAINS=pro2fp.es
+      - OAUTH2_PROXY_COOKIE_SECURE=false
+      - OAUTH2_PROXY_REDIRECT_URL=http://192.168.1.48.nip.io:8080/oauth2/callback
+    command:
+      - --upstream=http://mkdocs:8000
+      - --http-address=0.0.0.0:4180
+      - --cookie-domain=192.168.1.48.nip.io
+      - --cookie-expire=1h
+      - --cookie-refresh=10m
+
+  caddy:
+    image: caddy
+    container_name: caddy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - oauth2-proxy
